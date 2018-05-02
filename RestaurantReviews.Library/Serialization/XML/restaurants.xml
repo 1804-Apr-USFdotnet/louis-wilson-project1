@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<RestaurantList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <restaurants>
+    <Restaurant>
+      <restaurantLocation>
+        <StreetNumber>123</StreetNumber>
+        <StreetName>BurgerLady Place</StreetName>
+        <City>Fast City</City>
+        <State>Yumland</State>
+        <Zipcode>66666</Zipcode>
+      </restaurantLocation>
+      <reviewList>
+        <reviews>
+          <Review>
+            <reviewDate>2018-04-29T00:00:00-04:00</reviewDate>
+            <ReviewerName>Louis Wilson</ReviewerName>
+            <Rating>4</Rating>
+            <Description>I love Wendy's!</Description>
+          </Review>
+        </reviews>
+      </reviewList>
+      <RestaurantName>Wendy's</RestaurantName>
+      <FoodType>Fast Food Burgers</FoodType>
+      <AverageRating>4</AverageRating>
+    </Restaurant>
+    <Restaurant>
+      <restaurantLocation>
+        <StreetNumber>383</StreetNumber>
+        <StreetName>Dungeon Pkwy</StreetName>
+        <City>Gotham</City>
+        <State>New York</State>
+        <Zipcode>48399</Zipcode>
+      </restaurantLocation>
+      <reviewList>
+        <reviews>
+          <Review>
+            <reviewDate>2018-04-29T00:00:00-04:00</reviewDate>
+            <ReviewerName>Louis Wilson</ReviewerName>
+            <Rating>1</Rating>
+            <Description>I went to the Pizza Dungeon and that pizza was TOO SCARY!!</Description>
+          </Review>
+        </reviews>
+      </reviewList>
+      <RestaurantName>Pizza Dungeon</RestaurantName>
+      <FoodType>Pizza</FoodType>
+      <AverageRating>1</AverageRating>
+    </Restaurant>
+  </restaurants>
+</RestaurantList>
