@@ -1,0 +1,41 @@
+﻿@model RestaurantReviews.Library.Models.Restaurant
+
+
+
+<tr>
+    <td>
+        @Html.DisplayFor(model => model.RestaurantName)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Address)
+    </td>
+
+    @if (Model.AvgRating == 0)
+    {
+
+        /* As noted in the comments and other answers, the Html.Display is not for displaying strings, but for displaying data from the ViewData Dictionary or from a Model.
+         <td>
+             @Html.Display("No Reviews")
+         </td>
+         */
+
+        <td>
+            No Reviews Yet!
+        </td>
+    }
+    else
+    {
+        <td>
+            @Html.DisplayFor(model => model.AvgRating)
+        </td>
+    }
+
+
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = Model.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+    </td>
+</tr>
+

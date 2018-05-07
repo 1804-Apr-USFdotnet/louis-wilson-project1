@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -49,40 +52,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201805010434203_Initial.cs" />
-    <Compile Include="Migrations\201805010434203_Initial.Designer.cs">
-      <DependentUpon>201805010434203_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805020424527_LocationObj.cs" />
-    <Compile Include="Migrations\201805020424527_LocationObj.Designer.cs">
-      <DependentUpon>201805020424527_LocationObj.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="RestaurantContext.cs" />
+    <Compile Include="CreateDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\RestaurantCrud.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <Compile Include="Repositories\IRepository.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\RestaurantReviews.Library\RestaurantReviews.Library.csproj">
       <Project>{f5712bbb-f5e9-4674-b146-493c5e3a6ecc}</Project>
       <Name>RestaurantReviews.Library</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805010434203_Initial.resx">
-      <DependentUpon>201805010434203_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805020424527_LocationObj.resx">
-      <DependentUpon>201805020424527_LocationObj.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Migrations\SQL\SqlQuery_1.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,7 +12,7 @@ namespace RestaurantReviews.CRUD
     {
         static void Main(string[] args)
         {
-            RestaurantList listRestaurants = new RestaurantList();
+            RestaurantHandler listRestaurants = new RestaurantHandler();
             
             RestaurantCrud crud = new RestaurantCrud();
             
@@ -44,8 +44,8 @@ namespace RestaurantReviews.CRUD
             listRestaurants.DisplayTheseReviews();
             */
 
-            RestaurantXMLHandler restaurantXMLHandler = new RestaurantXMLHandler();
-            RestaurantList xmlRestaurantList;
+            XMLSerialization restaurantXMLHandler = new XMLSerialization();
+            RestaurantHandler xmlRestaurantList;
             xmlRestaurantList = restaurantXMLHandler.ReadListFromXML(); 
 
             

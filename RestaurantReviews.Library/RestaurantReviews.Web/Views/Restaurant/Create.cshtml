@@ -1,0 +1,56 @@
+﻿@model RestaurantReviews.Library.Models.Restaurant
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <h2>Create</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(Model => Model.RestaurantName);
+        @Html.EditorFor(Model => Model.RestaurantName, new { htmlattributes = new { placeholder = "Enter Name", required = "required" } })<br />
+        @Html.ValidationMessageFor(Model => Model.RestaurantName)
+
+        @Html.LabelFor(Model => Model.FoodType);
+        @Html.EditorFor(Model => Model.FoodType)<br />
+
+        @Html.LabelFor(Model => Model.Street1);
+        @Html.EditorFor(Model => Model.Street1)<br />
+
+        @Html.LabelFor(Model => Model.Street2);
+        @Html.EditorFor(Model => Model.Street2) <br />
+
+        @Html.LabelFor(Model => Model.City);
+        @Html.EditorFor(Model => Model.City, new { htmlattributes = new { placeholder = "Enter City", required = "required" } })<br />
+        @Html.EditorFor(Model => Model.City)<br />
+
+        @Html.LabelFor(Model => Model.State);
+        @Html.EditorFor(Model => Model.State)<br />
+
+        @Html.LabelFor(Model => Model.Country);
+        @Html.EditorFor(Model => Model.Country)<br />
+
+        @Html.LabelFor(Model => Model.Zipcode);
+        @Html.EditorFor(Model => Model.Zipcode)<br />
+
+        @Html.LabelFor(Model => Model.Phone);
+        @Html.EditorFor(Model => Model.Phone)<br />
+
+
+        <input type="submit" value="Add" />
+    }
+
+    <div>
+    </div>
+</body>
+</html>

@@ -9,45 +9,46 @@ using RestaurantReviews.Library;
 namespace RestaurantReviews.CRUD
 {
 
-    public class RestaurantCrud
-    {
-        RestaurantContext restDB = new RestaurantContext();
+    //public class RestaurantCrud()
 
-        public IEnumerable<Restaurant> LoadRestaurants()
-        {
-            return restDB.Restaurants.ToList();
-        }
+    //    RestaurantContext restDB = new RestaurantContext();
 
-        public void addRestaurant(RestaurantList restaurantList)
-        {
-            RestaurantList listToAppend = restaurantList;
-            listToAppend.AddRestaurant();
-            
-            foreach (Restaurant place in listToAppend.restaurants) {
-                restDB.Restaurants.Add(place);
-            }
+    //    public IEnumerable<Restaurant> LoadRestaurants()
+    //    {
+    //        return restDB.Restaurants.ToList();
+    //    }
 
-            restDB.SaveChanges();
-        }
+    //    public void addRestaurant(List<Restaurant> restaurantList)
+    //    {
+    //        List<Restaurant> listToAppend = restaurantList;
+    //        listToAppend.AddRestaurant();
 
-        public void addReview(RestaurantList restaurantList)
-        {
-            RestaurantList listToAppend = restaurantList;
+    //        foreach (Restaurant place in listToAppend.restaurants) {
+    //            restDB.Restaurants.Add(place);
+    //        }
 
-            restaurantList.AddReviewToThisRestaurant();
-            
+    //        restDB.SaveChanges();
+    //    }
 
-        }
+    //    public void addReview(List<Restaurant> restaurantList)
+    //    {
+    //        RestaurantHandler listToAppend = restaurantList;
 
-        public void addMultipleRestaurants(RestaurantList restaurantList)
-        {
-            foreach (Restaurant place in restaurantList.restaurants)
-            {
-                restDB.Restaurants.Add(place);
-            }
+    //        //restaurantList.AddReviewToThisRestaurant();
 
-            restDB.SaveChanges();
-        }
 
-    }
+    //    }
+
+    //    public void addMultipleRestaurants(RestaurantHandler restaurantList)
+    //    {
+    //        foreach (Restaurant place in restaurantList.restaurants)
+    //        {
+    //            restDB.Restaurants.Add(place);
+    //        }
+
+    //        restDB.SaveChanges();
+    //    }
+
+    //}
+
 }
