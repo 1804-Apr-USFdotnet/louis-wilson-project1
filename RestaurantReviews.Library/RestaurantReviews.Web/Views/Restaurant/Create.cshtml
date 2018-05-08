@@ -22,29 +22,29 @@
         @Html.ValidationMessageFor(Model => Model.RestaurantName)
 
         @Html.LabelFor(Model => Model.FoodType);
-        @Html.EditorFor(Model => Model.FoodType)<br />
+        @Html.EditorFor(Model => Model.FoodType, new { htmlattributes = new { placeholder = "Food Type/Cuisine", required = "required" } })<br />
 
         @Html.LabelFor(Model => Model.Street1);
-        @Html.EditorFor(Model => Model.Street1)<br />
+        @Html.EditorFor(Model => Model.Street1, new { htmlattributes = new { placeholder = "Street1", required = "complete address required" } })<br />
 
         @Html.LabelFor(Model => Model.Street2);
-        @Html.EditorFor(Model => Model.Street2) <br />
+        @Html.EditorFor(Model => Model.Street2, new { htmlattributes = new { placeholder = "Street2" } }) <br />
 
         @Html.LabelFor(Model => Model.City);
-        @Html.EditorFor(Model => Model.City, new { htmlattributes = new { placeholder = "Enter City", required = "required" } })<br />
-        @Html.EditorFor(Model => Model.City)<br />
+        @Html.EditorFor(Model => Model.City, new { htmlattributes = new { placeholder = "City", required = "complete address required" } })<br />
+        @Html.ValidationMessageFor(Model => Model.City)
 
         @Html.LabelFor(Model => Model.State);
-        @Html.EditorFor(Model => Model.State)<br />
+        @Html.EditorFor(Model => Model.State, new { htmlattributes = new { placeholder = "State", required = "complete address required" } })<br />
 
         @Html.LabelFor(Model => Model.Country);
-        @Html.EditorFor(Model => Model.Country)<br />
+        @Html.EditorFor(Model => Model.Country, new { htmlattributes = new { placeholder = "Country", required = "complete address required" } })<br />
 
         @Html.LabelFor(Model => Model.Zipcode);
-        @Html.EditorFor(Model => Model.Zipcode)<br />
+        @Html.EditorFor(Model => Model.Zipcode, new { htmlattributes = new { placeholder = "Zipcode", required = "complete address required" } })<br />
 
         @Html.LabelFor(Model => Model.Phone);
-        @Html.EditorFor(Model => Model.Phone)<br />
+        @Html.EditorFor(Model => Model.Phone, new { htmlattributes = new { placeholder = "555-555-5555", required = "phone number required" } })<br />
 
 
         <input type="submit" value="Add" />

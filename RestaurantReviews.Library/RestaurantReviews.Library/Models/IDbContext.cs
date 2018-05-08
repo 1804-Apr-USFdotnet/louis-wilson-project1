@@ -7,11 +7,10 @@ using System.Data.Entity;
 
 namespace RestaurantReviews.Library.Models
 {
-    public interface IDbContext
+    public interface IDbContext 
     {
         IDbSet<TEntity> Set<TEntity>() where TEntity : IEntity;
         void SetModified(object entity);
         int SaveChanges();
-        
     }
 }

@@ -89,7 +89,9 @@ namespace RestaurantReviews.DataAccessLayer.Repositories
 
                 //this.context.Entry(entity).State = EntityState.Modified;not worked
                 //this.context.Entry(entity).CurrentValues.SetValues(entity);not worked
-                _context.SetModified(entity);
+
+                //_context.SetModified(entity);
+
                 this._context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)

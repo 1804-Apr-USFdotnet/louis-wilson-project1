@@ -18,11 +18,14 @@ namespace RestaurantReviews.Library.Models
             [Required]
             [Range(1.0, 5.0, ErrorMessage = "Rating should be between 1 and 5")]
             public double Rating { get; set; }
-            [StringLength(200, ErrorMessage = "Comment should not be exceeed mored than 200 characters")]
+            [StringLength(200, ErrorMessage = "Comment should not be exceed more than 200 characters")]
             [DataType(DataType.MultilineText)]
             public string Description { get; set; }
 
+            public int RestaurantId { get; set; }
             public virtual Restaurant Restaurant { get; set; }
+            
+
             public DateTime Created { get; set; }
             public DateTime? Modified { get; set; }
 

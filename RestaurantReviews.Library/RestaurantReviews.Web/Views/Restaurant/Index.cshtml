@@ -1,10 +1,17 @@
-﻿@model IEnumerable<RestaurantReviews.Library.Models.Restaurant>
+﻿
+@model IEnumerable<RestaurantReviews.Library.Models.Restaurant>
+
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+<form method="get">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search" />
+</form>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -17,7 +24,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
-        <th>@Html.DisplayNameFor(model  => model.AvgRating)</th>
+        @*<th>@Html.DisplayNameFor(model  => model.AvgRating)</th>*@
         <th></th>
     </tr>
 

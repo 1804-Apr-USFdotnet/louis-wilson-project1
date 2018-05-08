@@ -31,20 +31,21 @@ namespace RestaurantReviews.DataAccessLayer
             db.SaveChanges(); */
 
             //mine
-            /*
+            
             restaurant.RestaurantName = "Izzy's NY Pizza";
             restaurant.FoodType = "Pizza";
-            restaurant.Street1 = "Hamilton E. Homles";
-            restaurant.Street2 = "Drive";
-            restaurant.City = "Stone Mountain";
+            restaurant.Street1 = "223";
+            restaurant.Street2 = "Cole Drive";
+            restaurant.City = "Lilburn";
             restaurant.State = "GA";
             restaurant.Zipcode = "43434";
-            restaurant.Phone = "434 - 343 - 4343";
+            restaurant.Country = "USA";
+            restaurant.Phone = "434-343-4343";
 
             restDb.Restaurants.Add(restaurant);
             restDb.SaveChanges();
             Console.WriteLine("Db Changes Saved..............");
-            */
+            
             #endregion
 
             #region UpdateRest

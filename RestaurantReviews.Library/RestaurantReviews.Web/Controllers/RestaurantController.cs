@@ -7,12 +7,15 @@ using RestaurantReviews.Library;
 using RestaurantReviews.Library.Models;
 using RestaurantReviews.DataAccessLayer;
 using RestaurantReviews.DataAccessLayer.Repositories;
+using NLog;
 
 namespace RestaurantReviews.Web.Controllers
 {
     public class RestaurantController : Controller
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         IRepository<Restaurant> crud;
+        IRepository<Review> revCrud;
         IDbContext restDB;
         
 
@@ -20,6 +23,7 @@ namespace RestaurantReviews.Web.Controllers
         {
             restDB = new RestaurantContext();
             crud = new RestaurantCrud<Restaurant>(restDB);
+            revCrud = new RestaurantCrud<Review>(restDB);
         }
 
         public RestaurantController(IDbContext fakeDb)
@@ -30,10 +34,50 @@ namespace RestaurantReviews.Web.Controllers
 
         // GET: Restaurant
         [HttpGet]// default type of Action
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm = null)
         {
+
+
+            var foundRestaurants = crud.Table.ToList()
+                //.OrderByDescending(restaurant => restaurant.Reviews.Average(review => review.Rating))
+                .Where(restaurant => searchTerm == null || restaurant.RestaurantName.ToLower().Contains(searchTerm.ToLower()))
+                //.Take(10)
+                .Select(restaurant => new Restaurant
+                {
+                    Id = restaurant.Id,
+                    RestaurantName = restaurant.RestaurantName,
+                    FoodType = restaurant.FoodType,
+                    Street1 = restaurant.Street1,
+                    Street2 = restaurant.Street2,
+                    City = restaurant.City,
+                    State = restaurant.State,
+                    Country = restaurant.Country,
+                    Zipcode = restaurant.Zipcode,
+                    Phone = restaurant.Phone
+                    
+                }
+                
+
+                /*
+                   .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
+                   .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
+                   .Take(10)
+                   .Select(r => new RestaurantListViewModel
+                   {
+                       Id = r.Id,
+                       Name = r.Name,
+                       City = r.City,
+                       Country = r.Country,
+                       CountOfReviews = r.Reviews.Count()
+                   }
+                   */
+                            );
+
+
+            /*
             var restaurants = crud.Table.ToList();
             return View(restaurants); 
+            */
 
             /* var restaurants = from r in crud.Table.ToList()
                               orderby r.RestaurantName ascending
@@ -49,7 +93,7 @@ namespace RestaurantReviews.Web.Controllers
                               orderby r.Reviews.Average(review => review.Rating) descending
                               select r;
                               */
-            //return View(restaurants);
+            return View(foundRestaurants);
         }
 
         // GET: Restaurant/Details/5
@@ -69,18 +113,27 @@ namespace RestaurantReviews.Web.Controllers
 
         // POST: Restaurant/Create
         [HttpPost]
-        public ActionResult Create(Restaurant restaurant)
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "RestaurantName,FoodType,Street1,City,State,Country,Zipcode,Phone")] Restaurant restaurant)
+        public ActionResult Create (Restaurant restaurant)
         {
             try
             {
-                crud.Insert(restaurant);
-                //restaurant.AddRestaurant(restaurant);
-                // log that it worked
-                return RedirectToAction("Index");
+                //if (ModelState.IsValid)
+                //{
+                    crud.Insert(restaurant);
+                    // log that it worked
+                logger.Info(restaurant.RestaurantName + "added to database");
+                    
+
+                    return RedirectToAction("Index");
+                //}
+                //return View();
             }
             catch
             {
                 // log some problem
+                logger.Info("restaurant failed validation added to database");
                 return View();
             }
         }
@@ -114,22 +167,35 @@ namespace RestaurantReviews.Web.Controllers
 
         // POST: Restaurant/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
  
         public ActionResult Edit(int id, Restaurant newRestaurant)
         {
             try
             {
                 var oldRestaurant = crud.Table.ToList().First(x => x.Id == id);
-                
+
 
                 newRestaurant.Id = oldRestaurant.Id;
+
+                //newRestaurant.Reviews = oldRestaurant.Reviews;
+               
+                foreach (Review rev in oldRestaurant.Reviews)
+                {
+                    newRestaurant.Reviews.Add(rev);
+                }
+                
+
                 crud.Delete(oldRestaurant);
                 crud.Insert(newRestaurant);
+
+                logger.Info(oldRestaurant.RestaurantName + "properties edited, replaced with entry" + newRestaurant.RestaurantName);
+
                 return RedirectToAction("Index");
             }
             catch
             {
+                logger.Info("restaurant edit failed");
                 return View(newRestaurant);
             }
         }
@@ -178,6 +244,8 @@ namespace RestaurantReviews.Web.Controllers
             try
             {
                 // TODO: Add delete logic here
+
+                logger.Info(crud.GetByID(id).RestaurantName + " deleted");
                 crud.Delete(crud.GetByID(id));
                 return RedirectToAction("Index");
             }

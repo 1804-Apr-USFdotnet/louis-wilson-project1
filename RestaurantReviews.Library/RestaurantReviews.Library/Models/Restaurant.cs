@@ -18,18 +18,24 @@ namespace RestaurantReviews.Library.Models
             [Required]
             [StringLength(25, ErrorMessage = "Restaurant Name should be within 25 characters")]
             public string RestaurantName { get; set; }
+            [Required]
             public string FoodType { get; set; }
             [Column("s1")]
+            [Required]
             public string Street1 { get; set; }
             [Column("s2")]
             public string Street2 { get; set; }
             [Required]
             public string City { get; set; }
+            [Required]
             public string State { get; set; }
+            [Required]
             public string Country { get; set; }
-            //[RegularExpression("[0-9]{5}")]
+            [RegularExpression("[0-9]{5}")]
+            [Required]
             [DataType(DataType.PostalCode)]
             public string Zipcode { get; set; }
+            [Required]
             [DataType(DataType.PhoneNumber)]
             public string Phone { get; set; }
 
@@ -37,13 +43,42 @@ namespace RestaurantReviews.Library.Models
 
             public virtual List<Review> Reviews { get; set; }
 
-            [NotMapped]
-            public bool hasReviews = false;
+        [NotMapped]
+        public bool hasReviews = false;
+        /*{
+
+            get
+            {
+                if ((Reviews.Count() == 0))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }*/
+
+        public Restaurant()
+        {
+            Reviews = new List<Review>();
+        }
 
             [NotMapped]
             public double? AvgRating
             {
-             get { return ReviewHandler.AggregateRatings(Reviews); }
+             get {
+
+                if (hasReviews == false)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return ReviewHandler.AggregateRatings(Reviews);
+                }
+            }
             // set { AvgRating = value; }
 
             //get;set;
@@ -54,7 +89,7 @@ namespace RestaurantReviews.Library.Models
             {
                 get
                 {
-                    return Street1 + " " + Street2 + " ," + City + " ," + State + " ," + Country + " ," + Zipcode;
+                    return Street1 + " " + Street2 + " " + City + ", " + State + " " + Zipcode + " " + Country;
                 }
 
             }
